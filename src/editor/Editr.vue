@@ -182,7 +182,7 @@ export default {
         }, 300),
 
         onKeyDown: debounce(function() {
-          if (navigator.userAgent.indexOf('MSIE') || navigator.userAgent.indexOf('Trident')) {
+          if (navigator.userAgent.indexOf('MSIE') > 0 || navigator.userAgent.match(/Trident.*rv:11\./)) {
             setTimeout(() => {
               this.emit();
             }, this)
