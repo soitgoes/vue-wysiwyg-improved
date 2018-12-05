@@ -1,6 +1,6 @@
 {
   "name": "vue-wysiwyg-improved",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "A WYSIWYG HTML editor for Vue.js",
   "keywords": [
     "vue",
@@ -65,5 +65,13 @@
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ramya-Palaniswami/vue-wysiwyg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ramya-Palaniswami/vue-wysiwyg/issues"
+  },
+  "homepage": "https://github.com/Ramya-Palaniswami/vue-wysiwyg#readme"
 }
