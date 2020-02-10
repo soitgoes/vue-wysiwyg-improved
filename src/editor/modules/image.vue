@@ -40,7 +40,7 @@ export default {
             id: `${this._uid}vwdropzone`,
             url: this.uploadURL,
             autoProcessQueue: this.uploadURL !== 'None',
-            dictDefaultMessage: `<i class="fa">${UPLOAD_ICON}</i><br>Click here to upload...`,
+            dictDefaultMessage: `<i class="fa">${UPLOAD_ICON}</i><br>Click here to select an image ...`,
 
           }
         }
