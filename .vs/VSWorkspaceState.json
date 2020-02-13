@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\build",
+    "\\config",
+    "\\src",
+    "\\src\\editor",
+    "\\src\\editor\\examples",
+    "\\src\\editor\\modules"
+  ],
+  "SelectedNode": "\\src\\editor\\modules\\image.vue",
+  "PreviewInSolutionExplorer": false
+}

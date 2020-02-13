@@ -1,6 +1,6 @@
 <template lang="pug">
 .editr
-    .editr--toolbar
+    .editr--toolbar(:class="{'editr--toolbar--disabled': disableToolbar}")
         Btn(
             v-for="(module,i) in modules",
             :module="module",
@@ -74,7 +74,8 @@ export default {
 
     data () {
         return {
-            selection: ""
+          selection: "",
+          isBlur: true
         }
     },
 
@@ -116,7 +117,9 @@ export default {
                     this.$refs.content.innerHTML = html;
                 }
             }
-        }
+        },
+
+        disableToolbar() { return this.isBlur; }
     },
 
     methods: {
@@ -162,17 +165,17 @@ export default {
             this.clearSelection();
 
             this.$nextTick(this.emit);
-        },
-
-        onDocumentClick (e) {
-            for (let i = 0; i < this.btnsWithDashboards.length; i++) {
-                const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
-                if (btn && btn.showDashboard && !btn.$el.contains(e.target))
-                    btn.closeDashboard();
+      },
+      onDocumentClick(e) {
+          for (let i = 0; i < this.btnsWithDashboards.length; i++) {
+            const btn = this.$refs[`btn-${this.btnsWithDashboards[i].title}`][0];
+            if (btn && btn.showDashboard && !btn.$el.contains(e.target)) {
+              btn.closeDashboard();
             }
+          }
         },
 
-        emit () {
+      emit() {
           this.$emit("html", this.$refs.content.innerHTML);
           this.$emit("change", this.$refs.content.innerHTML);
         },
@@ -190,10 +193,11 @@ export default {
         }, 300),
 
         onFocus () {
-          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator)
+          document.execCommand("defaultParagraphSeparator", false, this.mergedOptions.paragraphSeparator);
+          this.isBlur = false;
         },
 
-        onContentBlur () {
+        onContentBlur() {
           // save focus to restore it later
           this.selection = this.saveSelection();
         },
@@ -229,7 +233,7 @@ export default {
         if (this.mergedOptions.forcePlainTextOnPaste === true) {
             this.$refs.content.addEventListener("paste", this.onPaste);
         }
-        
+
         this.$refs.content.style.maxHeight = this.mergedOptions.maxHeight;
     },
 
@@ -263,7 +267,6 @@ $svgSize = 16px
     position relative
     display flex
     height $buttonHeight
-
     a
         display inline-block
         width $buttonWidth
@@ -313,7 +316,9 @@ $svgSize = 16px
         background alpha(white, 0.95)
         border 1px solid $offwhite
 
-
+.editr--toolbar--disabled
+    pointer-events none
+    opacity 0.4
 
 .editr--content
     min-height 150px
